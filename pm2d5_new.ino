@@ -175,13 +175,13 @@ updateWet();
 sum_wet=sum_wet+air_Wet;
 sum_Temp=sum_Temp+getPressure(2);
 spcount=spcount+1;
-String strpm1=floatToString("",cur_pm1,1),strpm10=floatToString("",cur_pm10,1),strpm0d3=floatToString("",cur_pm0d3_pcs,1),strpm1_pcs=floatToString("",cur_pm1_pcs,1),str2d5_pcs=floatToString("",cur_pm2d5_pcs,1),strpm5=floatToString("",cur_pm5_pcs,1),strpm10_pcs=floatToString("",cur_pm5_pcs,1),strlux=floatToString("",lux,1);
+String strpm1=floatToString("",cur_pm1,1),strpm10=floatToString("",cur_pm10,1),strpm0d3=floatToString("",cur_pm0d3_pcs,1),strpm1_pcs=floatToString("",cur_pm1_pcs,1),str2d5_pcs=floatToString("",cur_pm2d5_pcs,1),strpm5=floatToString("",cur_pm5_pcs,1),strpm10_pcs=floatToString("",cur_pm5_pcs,1),strlux=floatToString("",lux,1),str0d5=floatToString("",cur_pm0d5_pcs,0);
 
 if(spcount==10){//!!!
 String str135=floatToString("",sum_mq135/spcount,4),str2d5=floatToString("",sum_pm2d5_net/spcount,4),strmq7=floatToString("",sum_mq7/spcount,4),strmq2=floatToString("",sum_mq2/spcount,4),strmq9=floatToString("",sum_mq9/spcount,4),strwet=floatToString("",sum_wet/spcount,4),strtemp=floatToString("",sum_Temp/spcount,4),strpress=floatToString("",sum_pressure/spcount,4);
 //floatToString(str135,sum_mq135/spcount);
 
-String args="pass=m62078&mq135="+str135+"&pm2d5="+str2d5+"&mq7="+strmq7+"&mq2="+strmq2+"&mq9="+strmq9+"&pressure="+strpress+"&humidity="+strwet+"&temperature="+strtemp+"&locat="+locat+"&pm2d5_pcs="+str2d5_pcs+"&pm10="+strpm10+"&pm10_pcs="+strpm10_pcs+"&luminance="+strlux+"&pm1_pcs="+strpm1_pcs+"&pm1="+strpm1+"&pm0d3_pcs="+strpm0d3+"&pm5_pcs="+strpm5;
+String args="dev_id=001&pass=m62078&mq135="+str135+"&pm2d5="+str2d5+"&mq7="+strmq7+"&mq2="+strmq2+"&mq9="+strmq9+"&pressure="+strpress+"&humidity="+strwet+"&temperature="+strtemp+"&locat="+locat+"&pm2d5_pcs="+str2d5_pcs+"&pm10="+strpm10+"&pm10_pcs="+strpm10_pcs+"&luminance="+strlux+"&pm1_pcs="+strpm1_pcs+"&pm1="+strpm1+"&pm0d3_pcs="+strpm0d3+"&pm5_pcs="+strpm5+"&pm0d5_pcs="+str0d5;
 //add more things into it.
 
 
@@ -246,8 +246,8 @@ myGLCD.print("count_1.0um="+strpm1_pcs+"pcs/dL     ", LEFT, 56);
 myGLCD.print("count_2.5um="+str2d5_pcs+"pcs/dL        ", LEFT, 68);
 //myGLCD.setColor(0,0,0);
 //myGLCD.setBackColor(255, 255, 255);
-myGLCD.print("count_5um="+strpm5+"pcs/dL        ", LEFT, 80);
-myGLCD.print("count_10um="+strpm10_pcs+"pcs/dL          ", LEFT, 92);
+myGLCD.print("count_0.5um="+str0d5+"pcs/dL        ", LEFT, 80);
+myGLCD.print("count_5um="+strpm5+"pcs/dL          ", LEFT, 92);
 //setLevel(mq9);
 myGLCD.print("Brightness="+strlux+"lux        ", LEFT, 104);
 myGLCD.print("====PAGE 2/2====", LEFT, 140);
@@ -616,5 +616,4 @@ myGLCD.print("                                    ", LEFT, 92);
 myGLCD.print("                                    ", LEFT, 104);
 myGLCD.print("                                    ", LEFT, 140); 
 }
-
 
