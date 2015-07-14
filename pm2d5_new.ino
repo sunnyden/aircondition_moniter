@@ -35,7 +35,7 @@ Adafruit_BMP085_Unified bmp = Adafruit_BMP085_Unified(10085);//定义压敏、�
 
 ///////////////////////////初始化开始//////////////////////////////
 void setup(){
-
+Serial3.begin(115200);
 randomSeed(analogRead(0));
 myGLCD.InitLCD();
 myGLCD.setFont(SmallFont);
@@ -187,6 +187,7 @@ String args="dev_id=001&pass=m62078&mq135="+str135+"&pm2d5="+str2d5+"&mq7="+strm
 
 //String args="pass=m62078&mq135="+str135+"&pm2d5="+str2d5+"&mq7="+strmq7+"&mq2="+strmq2+"&mq9="+strmq9+"&pressure="+strpress+"&humidity="+strwet+"&temperature="+strtemp+"&longitude="+longitute+"&latitude="+latitude+"&altitude="+height;
 sim908_http("58.63.232.138:62078/env/input.php?"+args);
+wlan(args);
 //sim908_http("www.denghaoqing.com/wendu/test.txt");
 
 spcount=0;
@@ -616,4 +617,31 @@ myGLCD.print("                                    ", LEFT, 92);
 myGLCD.print("                                    ", LEFT, 104);
 myGLCD.print("                                    ", LEFT, 140); 
 }
+void wlan(String arguement){
+String http_request;
+http_request = "GET /env/input.php?"+arguement;
+
+int len = http_request.length()+1;  
+  Serial3.println("AT+RST");
+ delay(5000);
+
+ delay(100);
+ Serial3.println("AT+CIPSTART=\"TCP\",\"58.63.232.138\",62078");
+ delay(500);
+
+ delay(500);
+  Serial3.print("AT+CIPSEND=");
+  Serial3.println(len);
+ delay(300);
+
+  delay(1000);
+ Serial3.println(http_request); 
+   delay(1000);
+
+    delay(1000);
+   Serial3.print("AT+CIPCLOSE"); 
+//Serial3.flush();
+   delay(1000);
+
+ }
 
